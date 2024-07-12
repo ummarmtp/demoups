@@ -5,7 +5,7 @@ const socketIo = require('socket.io');
 const mongoose = require('mongoose');
 // MongoDB connection
 
-mongoose.connect("mongodb://localhost:27017/device").then(()=>{
+mongoose.connect("mongodb+srv://ummarrahil:06031998Rahil@cluster0.7baglhg.mongodb.net/device?retryWrites=true&w=majority&appName=Cluster0").then(()=>{
   console.log("mongodb connected")
   initializeData();
 }).catch((error)=>console.log(error));
