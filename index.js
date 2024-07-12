@@ -5,7 +5,7 @@ const socketIo = require('socket.io');
 const mongoose = require('mongoose');
 // MongoDB connection
 
-mongoose.connect("mongodb://127.0.0.1:27017/device").then(()=>{
+mongoose.connect("mongodb://localhost:27017/device").then(()=>{
   console.log("mongodb connected")
   initializeData();
 }).catch((error)=>console.log(error));
