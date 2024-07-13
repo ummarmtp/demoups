@@ -114,7 +114,7 @@ async function updateLastseen()
   // }
   if(secound>=1)
   {
-    secound=1;
+    secound=2;
     sensorData.status ="offline";
     sensorData.lastonline=dateAndtimeString();
     
