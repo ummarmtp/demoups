@@ -176,7 +176,7 @@ io.on('connection', (socket) => {
 async function initializeData() {
   const latestData = await userModel.findOne({}, {}, { sort: { 'createdAt': -1 } });
   if (latestData) {
-    secound=1;
+    secound=2;
     sensorData = latestData.toObject();
   } else {
     console.log("No data found in MongoDB. Using default values.");
