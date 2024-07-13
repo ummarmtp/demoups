@@ -131,6 +131,7 @@ async function updateLastseen()
 
   await userModel.updateOne({}, { $set: sensorData }, { upsert: true });
   io.emit('updateData', sensorData);
+  console.log(sensorData);
 
 } 
 
