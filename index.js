@@ -169,12 +169,13 @@ io.on('connection', (socket) => {
   socket.emit('updateData', sensorData); // Send the initial data to the new client
   socket.on('disconnect', () => {
     console.log('Client disconnected');
-  });
+  });  
 });
 
 async function initializeData() {
   const latestData = await userModel.findOne({}, {}, { sort: { 'createdAt': -1 } });
   if (latestData) {
+    secound=1;
     sensorData = latestData.toObject();
   } else {
     console.log("No data found in MongoDB. Using default values.");
