@@ -4,8 +4,7 @@ const http = require('http');
 const socketIo = require('socket.io');
 const mongoose = require('mongoose');
 // MongoDB connection
-
-mongoose.connect("mongodb+srv://ummarrahil:06031998Rahil@cluster0.7baglhg.mongodb.net/device?retryWrites=true&w=majority&appName=Cluster0").then(()=>{
+  mongoose.connect("mongodb+srv://ummarrahil:06031998Rahil@cluster0.7baglhg.mongodb.net/device?retryWrites=true&w=majority&appName=Cluster0").then(()=>{
   //mongoose.connect("mongodb://127.0.0.1:27017/device").then(()=>{
   console.log("mongodb connected")
   initializeData();
@@ -19,14 +18,9 @@ const deviceData = new mongoose.Schema({
   status: String,
   lastonline: String,
   lastDate:Date
-},
-{
-  id:String,
-  battery: String,
-  load: String,
-  status: String,
-  lastonline:String,
-  lastDate:Date},);
+}
+
+);
 
 const userModel=mongoose.model("data",deviceData);
 
@@ -61,7 +55,7 @@ let sensorData = [{
   status:"OFFLINE",
   lastonline:"",
   lastDate:new Date()
-},
+}
 ];
 
 var m=true;
@@ -73,10 +67,11 @@ app.post('/data', async (req, res) => {
     sensorData[parseInt(req.body.id)-1].load = req.body.load;
     m=false;
     secound[parseInt(req.body.id)-1]=0;
+    lastseen[parseInt(req.body.id)-1]=new Date();
     sensorData[parseInt(req.body.id)-1].lastDate=lastseen[parseInt(req.body.id)-1];
     sensorData[parseInt(req.body.id)-1].lastonline=dateAndtimeString(parseInt(req.body.id)-1);
     sensorData[parseInt(req.body.id)-1].status="Online";
-    lastseen[parseInt(req.body.id)-1]=new Date();
+    
     
     //const newSensorData = new userModel(sensorData);
     await userModel.updateOne({id:req.body.id}, { $set: sensorData[parseInt(req.body.id)-1] }, { upsert: true });
