@@ -119,6 +119,7 @@ async function updateLastseen()
     if(secound[m]>=1)
       {
         console.log("hello"+m);
+        console.log(secound[m]);
         secound[m]=2;
         sensorData[m].status ="Offline";
         sensorData[m].lastonline=dateAndtimeString(m);
