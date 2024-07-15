@@ -49,11 +49,18 @@
                     </thead>
                     <tbody id="result">
                         <tr>
-                            <th>1</th> 
-                            <th><span id="status"></span></th> 
-                            <th><span id="lastonline"></span></th> 
-                            <th><span id="battery"></span></th> 
-                            <th><span id="load"></span></th> 
+                            <th><span class="id"></span></th> 
+                            <th><span class="status"></span></th> 
+                            <th><span class="lastonline"></span></th> 
+                            <th><span class="battery"></span></th> 
+                            <th><span class="load"></span></th> 
+                         </tr>
+                         <tr>
+                            <th><span class="id"></span></th> 
+                            <th><span class="status"></span></th> 
+                            <th><span class="lastonline"></span></th> 
+                            <th><span class="battery"></span></th> 
+                            <th><span class="load"></span></th> 
                          </tr>
                     </tbody>
 
@@ -68,43 +75,26 @@
       const socket = io();
   
       socket.on('updateData', (data) => {
-       
-        document.getElementById('load').innerHTML = data.load == "1" ? "ON" : "OFF";
-        document.getElementById('load').style.color = data.load == "1" ? "green" : "red";
-
-        document.getElementById('status').innerHTML = data.status== "Online" ? "Online" : "Offline";
-        document.getElementById('status').style.color = data.status == "Online" ? "green" : "red";
-
-        document.getElementById('lastonline').innerHTML = data.lastonline;
-       // document.getElementById('lastonline').style.color = data.lastonline == "Online" ? "green" : "red";
-
-            if(isNaN(data.battery))
+       for(let i=0;i<=1;i++)
+       {
+        document.getElementsByClassName('load')[i].innerHTML = data[i].load == "1" ? "ON" : "OFF";
+        document.getElementsByClassName('id')[i].innerHTML = data[i].id;
+        document.getElementsByClassName('load')[i].style.color = data[i].load == "1" ? "green" : "red";
+        document.getElementsByClassName('status')[i].innerHTML = data[i].status== "Online" ? "Online" : "Offline";
+        document.getElementsByClassName('status')[i].style.color = data[i].status == "Online" ? "green" : "red";
+        document.getElementsByClassName('lastonline')[i].innerHTML = data[i].lastonline;
+        if(isNaN(data[i].battery))
             {
-                data.battery="0";
+                data[i].battery="0";
             }
-            var v = parseFloat(data.battery);
+            var v = parseFloat(data[i].battery);
             console.log(v);
-            document.getElementById('battery').innerHTML = v !== null ? v + ' V' : 'invalid ';
-           document.getElementById('battery').style.color = data.battery <= 10.5 ? "red" : "green";
-        //    if(battery<=10.5)
-        //    {
-        //     document.getElementById('battery').style.color="red";
+            document.getElementsByClassName('battery')[i].innerHTML = v !== null ? v + ' V' : 'invalid ';
+            document.getElementsByClassName('battery')[i].style.color = data[i].battery <= 10.5 ? "red" : "green";  
 
-        //    }
-        //    else if(battery<=11.6)
-        //    {
-        //     document.getElementById('battery').style.color="yellow";
+       }
 
-        //    }
-        //    else{
-        //     document.getElementById('battery').style.color="green";
-
-        //    }
             
-          
-        
-        
-        
       });
     </script>
   
