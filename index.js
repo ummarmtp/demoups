@@ -96,8 +96,8 @@ app.get('/user', async(req, res) => {
 
 
 
-setInterval(updateLastseen, 50000);
-setInterval(secCount, 50000);
+setInterval(updateLastseen, 30000);
+setInterval(secCount, 30000);
 function secCount()
 {
   for(let i=0;i<2;i++)
