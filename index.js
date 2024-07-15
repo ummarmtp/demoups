@@ -4,8 +4,8 @@ const http = require('http');
 const socketIo = require('socket.io');
 const mongoose = require('mongoose');
 // MongoDB connection
-  mongoose.connect("mongodb+srv://ummarrahil:06031998Rahil@cluster0.7baglhg.mongodb.net/device?retryWrites=true&w=majority&appName=Cluster0").then(()=>{
-  //mongoose.connect("mongodb://127.0.0.1:27017/device").then(()=>{
+  //mongoose.connect("mongodb+srv://ummarrahil:06031998Rahil@cluster0.7baglhg.mongodb.net/device?retryWrites=true&w=majority&appName=Cluster0").then(()=>{
+  mongoose.connect("mongodb://127.0.0.1:27017/device").then(()=>{
   console.log("mongodb connected")
   initializeData();
 }).catch((error)=>console.log(error));
@@ -28,7 +28,7 @@ const { time } = require('console');
 process.env.TZ = 'Asia/Dubai'
 'Asia/Dubai'
 
-var secound = new Array(2).fill(2);
+var secound = new Array(2).fill(0);
 var lastseen = new Array(2).fill(new Date());
 
 const app = express();
@@ -134,7 +134,7 @@ async function updateLastseen()
   }
  
   io.emit('updateData', sensorData);
-  await userModel.updateOne({}, { $set: sensorData }, { upsert: true });
+  await userModel.updateMany({}, { $set: sensorData }, { upsert: true });
   console.log(sensorData);
   //
   
@@ -188,6 +188,13 @@ async function initializeData() {
     for(let i=0;i<2;i++)
     {
       lastseen[i]=sensorData[i].lastDate;
+      if(sensorData.static[i]=="ofline")
+      {
+        secound=2;
+      }
+      else{
+        secound=0;
+      }
     }
     console.log(sensorData);
   } else { 
