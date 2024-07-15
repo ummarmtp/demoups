@@ -119,7 +119,7 @@ async function updateLastseen()
     if(secound[m]>=1)
       {
         secound[m]=2;
-        sensorData[m].status ="offline";
+        sensorData[m].status ="Offline";
         sensorData[m].lastonline=dateAndtimeString(m);
         sensorData[m].lastDate=lastseen[m];
       }
@@ -137,9 +137,6 @@ async function updateLastseen()
   //await userModel.updateMany({}, { $set: sensorData }, { upsert: true });
   console.log(sensorData);
   //
-  
-
-  
 } 
 
 function strLen(data) {
@@ -188,7 +185,7 @@ async function initializeData() {
     for(let i=0;i<2;i++)
     {
       lastseen[i]=sensorData[i].lastDate;
-      if(sensorData[i].status=="offline")
+      if(sensorData[i].status=="Offline")
       {
         secound[i]=2;
       }
