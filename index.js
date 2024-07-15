@@ -188,12 +188,12 @@ async function initializeData() {
     for(let i=0;i<2;i++)
     {
       lastseen[i]=sensorData[i].lastDate;
-      if(sensorData.static[i]=="ofline")
+      if(sensorData.status[i]=="ofline")
       {
-        secound=2;
+        secound[i]=2;
       }
       else{
-        secound=0;
+        secound[i]=0;
       }
     }
     console.log(sensorData);
