@@ -52,7 +52,7 @@ let sensorData = [{
   load: "OFF",
   status:"OFFLINE",
   lastonline:"",
-  LastDate:new Date()
+  lastDate:new Date()
 },
 {
   id:"2",
@@ -60,7 +60,7 @@ let sensorData = [{
   load: "OFF",
   status:"OFFLINE",
   lastonline:"",
-  Lastdate:new Date()
+  lastDate:new Date()
 },
 ];
 
@@ -192,7 +192,7 @@ async function initializeData() {
     sensorData = latestData.map(doc => doc.toObject());
     for(let i=0;i<2;i++)
     {
-      lastseen[i]=sensorData[i].lastDate
+      lastseen[i]=sensorData[i].lastDate;
     }
     console.log(sensorData);
   } else { 
