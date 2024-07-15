@@ -130,7 +130,7 @@ async function updateLastseen()
         sensorData[m].lastDate=lastseen[m];
       }
       
-      await userModel.updateOne({id:(m+1).toString()}, { $set: sensorData }, { upsert: true });
+      await userModel.updateOne({id:(m+1).toString()}, { $set: sensorData[m] }, { upsert: true });
   }
  
   io.emit('updateData', sensorData);
