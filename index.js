@@ -96,8 +96,8 @@ app.get('/user', async(req, res) => {
 
 
 
-setInterval(updateLastseen, 30000);
-setInterval(secCount, 30000);
+setInterval(updateLastseen, 50000);
+setInterval(secCount, 50000);
 function secCount()
 {
   for(let i=0;i<2;i++)
@@ -116,7 +116,7 @@ async function updateLastseen()
   for( m=0;m<2;m++)
   {
     console.log(m);
-    if(secound[m]>=1)
+    if(secound[m]>=2)
       {
         console.log("hello"+m);
         console.log(secound[m]);
