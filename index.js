@@ -4,8 +4,8 @@ const http = require('http');
 const socketIo = require('socket.io');
 const mongoose = require('mongoose');
 // MongoDB connection
-  //mongoose.connect("mongodb+srv://ummarrahil:06031998Rahil@cluster0.7baglhg.mongodb.net/device?retryWrites=true&w=majority&appName=Cluster0").then(()=>{
-  mongoose.connect("mongodb://127.0.0.1:27017/device").then(()=>{
+  mongoose.connect("mongodb+srv://ummarrahil:06031998Rahil@cluster0.7baglhg.mongodb.net/device?retryWrites=true&w=majority&appName=Cluster0").then(()=>{
+  //mongoose.connect("mongodb://127.0.0.1:27017/device").then(()=>{
   console.log("mongodb connected")
   initializeData();
 }).catch((error)=>console.log(error));
@@ -130,11 +130,11 @@ async function updateLastseen()
         sensorData[m].lastDate=lastseen[m];
       }
       
-      
+      await userModel.updateOne({id:(i+1).toString()}, { $set: sensorData }, { upsert: true });
   }
  
   io.emit('updateData', sensorData);
-  await userModel.updateMany({}, { $set: sensorData }, { upsert: true });
+  //await userModel.updateMany({}, { $set: sensorData }, { upsert: true });
   console.log(sensorData);
   //
   
